@@ -65,15 +65,19 @@ Producto interno entre el mapa de carácteristicas vectorizado i y j en la capa 
 Al derivar E<sub>l</sub> con respecto a las activaciones en cada capa.
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima5.png?raw=true)
 
+Las gradientes de E con respecto con respecto a las activaciones de la capas inferiores pueden ser facilmente calculados usando el error de back-propagation.
 
+
+
+Para Generar la mezcla de las imágenes
 La función de perdida que minimizamos es:
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima6.png?raw=true)
 
 ## Proceso
 
-![](https://image.slidesharecdn.com/adl1103-161027023044/95/applied-deep-learning-1103-convolutional-neural-networks-93-638.jpg?cb=1479405398)
+![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima10.png?raw=true)
 
-![](https://image.slidesharecdn.com/adl1103-161027023044/95/applied-deep-learning-1103-convolutional-neural-networks-94-638.jpg?cb=1479405398)
+![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima11.png?raw=true)
 
 ## Conclusiones
 - Reemplazar la operación max-pooling por agrupación promedio mejora el flujo de gradiente y se obtiene resultados ligeramente más atractivos.
