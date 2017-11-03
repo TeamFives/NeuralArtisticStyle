@@ -76,3 +76,6 @@ La función de perdida que minimizamos es:
 ![](https://image.slidesharecdn.com/adl1103-161027023044/95/applied-deep-learning-1103-convolutional-neural-networks-94-638.jpg?cb=1479405398)
 
 ## Conclusiones
+- Reemplazar la operación max-pooling por agrupación promedio mejora el flujo de gradiente y se obtiene resultados ligeramente más atractivos.
+- Las representaciones de contenido y estilo en la Red Neural Convolucional son separables.
+- Las imágenes visualmente más atractivas suelen ser creadas en las capas más altas de la red.
