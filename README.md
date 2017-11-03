@@ -22,17 +22,38 @@ Dada una imagen de entrada el vector x
 
 
 <img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima1.png?raw=true"\>
- - p
- - x vector de entrada imágenes.
- -
+ - **p :**  imagen orginal
+ - **x :**  imagen generada
+ - **l :**  capa actual
+ - **F<sup>l</sup><sub>ij</sub> :** función de activación del i-esimo filtro en la posición j de la capa l
+ - **P<sup>l</sup><sub>ij</sub> :**
 
 
 
+Al derivar la función de perdida con respecto a la activación en la capa l.
 
 <img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima2.png?raw=true"\>
+
+- **F<sup>l</sup> :** respresentación de característica de x en la capa l.
+- **P<sup>l</sup> :** imagen generada de característica de p en la capa l.
+
+Producto interno entre el mapa de carácteristicas vectorizado i y j en la capa l.
+
 <img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima3.png?raw=true"\>
+
+
+
 <img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima4.png?raw=true"\>
+
+-  **E<sub>l</sub> :** contribución de la capa a la perdida total.
+-  **Lstyle :** Perdida total
+
+
+Al derivar E<sub>l</sub> con respecto a las activaciones en cada capa.
 <img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima5.png?raw=true"\>
+
+
+La función de perdida que minimizamos es:
 <img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima6.png?raw=true"\>
 
 ## Conclusiones
