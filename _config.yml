@@ -1,1 +1,7 @@
 theme: jekyll-theme-cayman
+use-math: true
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false

@@ -18,6 +18,6 @@ En el trabajo se usaron 16 capas convolucionales, 5 capas de agrupamiento y 19 c
 ![](https://image.slidesharecdn.com/adl1103-161027023044/95/applied-deep-learning-1103-convolutional-neural-networks-60-638.jpg?cb=1479405398 "titulo")
 
 Cada capa en la red define a non-linear filter cuya complejidad aumenta con la posición de las capas de red.
-Dada una imagen de entrada  $\vec{x}$
+Dada una imagen de entrada el vector x
 
 ## Conclusiones
