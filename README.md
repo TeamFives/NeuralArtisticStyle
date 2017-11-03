@@ -68,3 +68,6 @@ La función de perdida que minimizamos es:
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima6.png?raw=true)
 
 ## Conclusiones
+- Reemplazar la operación max-pooling por agrupación promedio mejora el flujo de gradiente y se obtiene resultados ligeramente más atractivos.
+- Las representaciones de contenido y estilo en la Red Neural Convolucional son separables.
+- Las imágenes visualmente más atractivas suelen ser creadas en las capas más altas de la red.
