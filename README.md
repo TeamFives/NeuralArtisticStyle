@@ -20,4 +20,19 @@ En el trabajo se usaron 16 capas convolucionales, 5 capas de agrupamiento y 19 c
 Cada capa en la red define a non-linear filter cuya complejidad aumenta con la posición de las capas de red.
 Dada una imagen de entrada el vector x
 
+
+<img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima1.png?raw=true"\>
+ - p
+ - x vector de entrada imágenes.
+ -
+
+
+
+
+<img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima2.png?raw=true"\>
+<img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima3.png?raw=true"\>
+<img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima4.png?raw=true"\>
+<img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima5.png?raw=true"\>
+<img src="https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima6.png?raw=true"\>
+
 ## Conclusiones
