@@ -78,7 +78,7 @@ Hay varias herramientas que se pueden emplear ya que nos facilitan la implementa
 
 - Torch7
 
-![torch](img/torch.png)
+![torch](img/torch7.png)
 
 - Theano - Pylearn2
 
