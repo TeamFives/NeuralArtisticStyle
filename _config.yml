@@ -1,5 +1,5 @@
 theme: jekyll-theme-cayman
-
+use-math: true
 markdown: kramdown
 
 kramdown:
