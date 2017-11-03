@@ -43,6 +43,8 @@ Donde F<sup>l</sup> es un matriz en R<sup>N<sub>l</sub>xM<sub>l</sub></sup>
 - **N<sub>l</sub>:** Número de filtros distintos
 - **M<sub>l</sub>:** tamaño del mapa de características
 
+
+
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima7.png?raw=true)
 
 
@@ -66,5 +68,11 @@ Al derivar E<sub>l</sub> con respecto a las activaciones en cada capa.
 
 La función de perdida que minimizamos es:
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima6.png?raw=true)
+
+## Proceso
+
+![](https://image.slidesharecdn.com/adl1103-161027023044/95/applied-deep-learning-1103-convolutional-neural-networks-93-638.jpg?cb=1479405398)
+
+![](https://image.slidesharecdn.com/adl1103-161027023044/95/applied-deep-learning-1103-convolutional-neural-networks-94-638.jpg?cb=1479405398)
 
 ## Conclusiones
