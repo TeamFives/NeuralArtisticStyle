@@ -73,6 +73,18 @@ La función de perdida que minimizamos es:
 
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima11.png?raw=true)
 
+## Esquema del proceso
+- Reconstrucción del Contenido
+![Contenido](imag/object_reconstruction.png)
+
+- Reconstrucción del estilo
+![Estilo](imag/style_reconstruction.png)
+
+- Redes Neuronales Convolucionales
+![Estilo](imag/convolutional_neural_network.png)
+
+- Red VGG
+![Estilo](imag/vgg_architecture_vertical.png)
 
 
 ## Herramientas
