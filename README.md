@@ -13,20 +13,20 @@ En este trabajo mostramos que haciendo uso de las redes convolucionales podemos 
 Los resultados de los investigadores Leon A. Gatys, Alexander S. Ecker,  Matthias Bethge fueron realizados en base al uso de una red VGG network, la cualque es una convolutional neural network que ha sido entrenada con aproximandamente 1.2 millones de imagenes del dataset [ImageNet](http://image-net.org/index) por el Visual Geometry Group de la Universidad de Oxford.
 El VGG-19 se encuentra disponible en muchas heramientas como caffe, keras, matlab, etc.
 
-En el trabajo se usaron 16 capas convolucionales, 5 capas de agrupamiento y 19 capas VGG.
+En el trabajo se usaron 16 capas convolucionales, 5 capas de agrupamiento de 19 capas VGG.
 
 ![](https://image.slidesharecdn.com/adl1103-161027023044/95/applied-deep-learning-1103-convolutional-neural-networks-60-638.jpg?cb=1479405398 "titulo")
 
 Cada capa en la red define a non-linear filter cuya complejidad aumenta con la posición de las capas de red.
-Dada una imagen de entrada el vector x
+Para visualizar que esta codificada en las diferentes capas de jerarquía. Desarrollamos una gradiente de descenso en una white noise image()
 
-
+Error cuadratíco entre las 2 características
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima1.png?raw=true)
  - **p :**  imagen orginal
  - **x :**  imagen generada
  - **l :**  capa actual
  - **F<sup>l</sup><sub>ij</sub> :** función de activación del i-esimo filtro en la posición j de la capa l
- - **P<sup>l</sup><sub>ij</sub> :**
+ - **P<sup>l</sup><sub>ij</sub> :** función de activación de la imagen generada.
 
 
 
@@ -36,6 +36,16 @@ Al derivar la función de perdida con respecto a la activación en la capa l.
 
 - **F<sup>l</sup> :** respresentación de característica de x en la capa l.
 - **P<sup>l</sup> :** imagen generada de característica de p en la capa l.
+Apartir de la cual podemos calcular la gradiente con respecto  a la imagen utilizando el error estandar back-propagation. Con lo cual podemos cambiar la imagen aleatoria hasta que genere un respuesta en un capa de la CNN como la imagen original p.
+
+Donde F<sup>l</sup> es un matriz en R<sup>N<sub>l</sub>xM<sub>l</sub></sup>
+- **N<sub>l</sub>:** Número de filtros distintos
+- **M<sub>l</sub>:** tamaño del mapa de características
+
+![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima7.png?raw=true)
+
+
+
 
 Producto interno entre el mapa de carácteristicas vectorizado i y j en la capa l.
 
