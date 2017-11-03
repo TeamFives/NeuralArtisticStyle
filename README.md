@@ -62,12 +62,6 @@ Producto interno entre el mapa de carácteristicas vectorizado i y j en la capa 
 -  **Lstyle :** Perdida total
 
 
-Al derivar E<sub>l</sub> con respecto a las activaciones en cada capa.
-![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima5.png?raw=true)
-
-Las gradientes de E con respecto con respecto a las activaciones de la capas inferiores pueden ser facilmente calculados usando el error de back-propagation.
-
-
 
 Para Generar la mezcla de las imágenes
 La función de perdida que minimizamos es:
@@ -78,6 +72,22 @@ La función de perdida que minimizamos es:
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima10.png?raw=true)
 
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima11.png?raw=true)
+
+## Herramientas
+Hay varias herramientas que se pueden emplear ya que nos facilitan la implementación de los algoritmos de Aprendizaje Profundo y algunas de ellas son las sgtes:
+
+- Torch7
+
+![torch](img/torch.png)
+
+- Theano - Pylearn2
+
+![Con titulo](img/theano-pylearn.png)
+
+- Caffe
+
+- [TensorFlow](https://github.com/TeamFives/NeuralArtisticStyle/blob/master/Cuaderno/NeuralArtisticStyle.ipynb)
+	
 
 ## Conclusiones
 - Reemplazar la operación max-pooling por agrupación promedio mejora el flujo de gradiente y se obtiene resultados ligeramente más atractivos.
