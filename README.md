@@ -73,16 +73,18 @@ La función de perdida que minimizamos es:
 
 ![](https://github.com/Visot/TeoriaAlgoritmica/blob/master/ima/ima11.png?raw=true)
 
+
+
 ## Herramientas
 Hay varias herramientas que se pueden emplear ya que nos facilitan la implementación de los algoritmos de Aprendizaje Profundo y algunas de ellas son las sgtes:
 
 - Torch7
 
-![torch](img/torch7.png)
+![torch](imag/torch7.png)
 
 - Theano - Pylearn2
 
-![Con titulo](img/theano-pylearn.png)
+![Theano - Pylearn2](imag/theano-pylearn.png)
 
 - Caffe
 
