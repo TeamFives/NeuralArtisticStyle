@@ -13,9 +13,8 @@ El contenido de una imagen y el estilo se pueden separar, así al queren combina
 ## Estado del arte
 
 ### 1. Krizhevsky, A., Sutskever, I. & Hinton, G. E.  Imagenet classification with deep convolutional neural networks
-
-####       Resumen
-En el presente papers entreno un gran deep convolutional network con el objetivos de clasificar 1.2 millones de imagenes de alta resolución. La red neuronal tenía 60 millones de parámetros y 5 capas convoluciones.
+####    Resumen
+En el presente papers entreno un gran deep convolutional network con el objetivos de clasificar 1.2 millones de imagenes de alta resolución que fueron obtenidos del dataset de ImageNet. La red neuronal tenía 60 millones de parámetros y 5 capas convoluciones.
 
 Para implementar el desempeño de reconocimiento de objetos podemos:
 + Recopilar un conjunto de datos más grande.
@@ -28,82 +27,67 @@ Se obtuvieron algunas mejoras para CNN increiblementes grandes con el uso:
 + GPU's han resultado muy útiles.
 + Optimización de convolución 2D.
 
-
-
-##### 2. El conjunto de datos.
- ImageBet es un dataset que contien 15 millones de imágenes de alta resolución etiquetadas que pertenecen a 2200 categorías. Empezó en el 2010 como pare de pascal visual object challenge en total hay 1.2 millon de imágenes 50,000 imágenes de validación y 150000 de testing.
-
-En imageNet es costumbre informar 2 tasas de error top-1 y top-2 donde la tasa de error de top-5 es la fracción de imágenes de prueba cuya etiqueta correcta no se encuentra entre las 5 etiquetas que el modelo considera más probable.
 Imagenet consiste en imágenes de resolución variable pero el sistema planeado require de una resolución fija de 256x256 de esta manera se entrena a la red para valores RGB de pixeles.
 
-##### 3 Arquitectura
+##### Arquitectura
 Nuestra red final contine 5 convoluciones y 3 capas conectadas a esta profundidad para ser importante, encontramos que eliminando cualquier capa convolucional(cada uno de los cuales contiene 1% de los parámetros del modelo) resulto inferior al final el tamaño de la red queda delimitado por la memoria disponibles en las GPU's actuales.
-##### 3.1 ReLU Nonlinearity
-
+ + #####  ReLU Nonlinearity
 Las CNN que trabajan con Relu(Rectificadores de unidades lineales) entrena varias veces más rápido que usando tanh, en donde resulta difícil conseguir resultados eficientes solo usando la neurona tradicional.
-En este conjunto de datos, la principal preocupación es evitar el sobreajuste porque el efecto observado es diferente al acelerado la habilidad de ajustarse a un conjunto de entrenamiento que informamos al usar ReLU. Un aprendizaje es más rápido si tiene una gran influencia en el rendimiento de modelos grandes entrenados en grandes conjuntos de datos.
+Un aprendizaje es más rápido si tiene una gran influencia en el rendimiento de modelos grandes entrenados en grandes conjuntos de datos.
 
-##### 3.2 Training en multiples GPU's
-Las limitaciones en memoria de gpu's limita el máximo de las redes que puede ser entrenado. 1.2 millones de ejemplos es demasiado para hacerla en una GPU's. Se extendio el problema a 2 GPU's. las GPU estan especialmente adecuada para la paralelización de GPU cruzada ya que pueden leer y escribir directamente en la memoria del otro sin pasar por la maquina host.
-El esquema empleado pone la mitad de los núcleos o neuronas en cada GPU con una adicional: las GPU se comunican solo en ciertas capas.
- esto significa que los núcleos de la capa 3 toman la entrada los mapas del kernel en la capa2 . Sin embargo los nucleos de la capa en la capa4 toman entrada solos esos mapas de kernel en la capa3 que residen  la misma GPU.
- Elegir un patron de conectividad es un problema para la validación cruzada pero nos permite ajusta la cantidad de computación en este esquema se reduce top1 en 1.7 y top 5 1.2 en comparación  a una red con la mitad de nucleos en cada capa convolucional
++ #####  Training en multiples GPU's
+Un GTX 580 GPU tiene 3gb de memoria, el cual limita el tamaño de la red. Por lo que este papers se realizá con GPU's
+El esquema empleado pone la mitad de los núcleos o neuronas en cada GPU con una adicional: las GPU's se comunican solo en ciertas capas.
 
 
-##### 3.3 Local response Normalization
-
++ ##### Local response Normalization
 Las relu tienen la propiedad que no requieren normalización de entradas para evitar la saturación. Si al menos algunos ejemplos de entrenamiento producen una entrada positiva a una relu aprenderá que pasa en esa neurona.
 Sin embargo encontramos que el siguiente esquema de normalización local ayuda a la generalización.
 Se aplica esta normalización despues de aplicar el ReLU en ciertas capas.
 Es una normalización de brillo  reduce la tasa de error top1 en un 1. y top en 1.2
 CNN logro una tasa de erroe de 13% sin normalizacion y 11% con normalización.
 
-##### 3.4 Overlapping Pooling
-
-Las capas agrupadas en CNN resumen de la salida de los grupos vecinos de neuronas en mismo kernel del mapa. Tradicionalmente los vecinos por unidades adyacente de agrupaciones no se superponen.
++ ##### Overlapping Pooling
+Las capas agrupadas en CNN resumen la salida de los grupos vecinos de neuronas en mismo kernel del mapa. Tradicionalmente los vecinos por unidades adyacente de agrupaciones no se superponen.
 Para ser más precisos, se puede pensar que una capa de agrupamiento consiste en una grilla de agrupamiento unidades separadas por pixeles de separación.
 Generalmente observamos durante el entrenamiento que los modelos con superposición son un mas difícil de sobre equilibrar.
 
 
-##### 3.5 Overall Architecture
++ ##### Overall Architecture
 
- La red tiene 8 capas con pesos, las 5 primerss son convolucionales y las 3 están completamente conectado. La salida de la última capa totalmente conectada se alimenta a un softmax de 1000 vias que produce una distribución de sobre las 1000 etiquetas de clases . La red maximiza la regresión logistical multinomial objetivo, que es equivalente a maximizar el promedio de los caso de entrenamiento de probabiliad de registro de la etiqueta correcta bajo la distribución de predicción.
-Los núcleos de las capas convolucionales 2 4 5 están conectados a solos a esos mapas de núcleo en la capa anterior que residen en la misma GPU.
-Los núcleos de la 3ra capa están conectados a todos los mapas del núcleo en la 2da capa. Las neuronas en las capas completamente conectadas, están conectadas a todas las neuronas en las previas capas.
-Las capas de normalización de respuesta siguen la primera y la 2da capa, siguen las capas convolucionales en la 5ta capa La ReLU la no linealidad se aplica a la salida de cada capa convolucional. **La ReLU la no linealidad se aplica a la salida de la cada capa convolucional y completamente** conectada.
-
-La segunda capa convolucional toma con entrada las respuesta normalizada y agrupada de la primera capa convolucional y la filtra con 256 núcleos de tamaño 5x5 x48,
-la 3,4 y 5 capa convolucionales estan conectadas entre si sin ninguna intervención agrupación o capas de normalización .
-la tercera capa tiene 384 nucleos de tamaño 3x3x256 conectados a la salida(normalizadas, agrupadas) de la 2da capa convolucional. la cuarta capa convolucional tiene convolucional tiene 384 nucleos de tamaño 3x3x192 y la quinta 256 núcleos de tamaño 3x3x192. Las capas completamente conectadas tiene 4096 neuronas cada uno.
+   + Red tiene 8 capas con peso.
+   + 3 capas completamente conectadas.
+   + La salida de la ´ultima capa esta conectada a un softmax sobre 100 bias que produce una distrución sobre 1000 etiquetas de clases.
+   + La 5ta capa ReLu la no linealidad se aplicada a salida de cada capa convolucional.
 
 
-##### 4 Reducing overfitting
+
+##### Reducing overfitting
 Nuestra arquitectura tiene 60 millones de parámetros aunque las 1000 clases de ILSVRC haga que cara ejemplo imponga 10bits de restricción en la asignación de la imagen a etiquetar, esto resulta ser insuficiente para aprender tantos parámetros sin un  sobreajuste considerable.Formas de cambatir el sobreajuste.
 
-###### 4.1 Data Augmentation
-El método más común para reducir el sobreajuste es agradar los datos de artificialmente el conjunto de datos utiliza transformaciones que preservan la etiqueta.
-Empleamos 2 formas distintas de aumento de datos, los cuales permiten que las imágenes transformadas se produzcan a partir de la imagen original con muy poco cálculo, por lo que las imagenes transformadas no necesita almacenar en el disco. En la implementación las imágenes transformadas se se generan en python en la cpu mientras que el GPU entrena el lote anterior de imagenes.
-La primera forma de aumento de datos consiste en generar traducciones de imágenes y reflejos horizontales hacemos esto extrayendo 224x224 parches ( y sus reflejos horizontales) y la capacitación de nuestra red en estos parches extraidos esto incrementa el tamaño de nuestro conjunto de entrenamiento establecido en un factor de 2048 aunque, los ejemplos de entrenamiento resultante son por supuesto altamente interdependientes.
-Sin este esquema nuestra red sufre sobreajuste sustancia que tendría que obligarnos tener redes mucho más pequeña.
-La segunda forma de aumento de datos consiste en alterar las **intensidades de canales RGB** en imagenes de entrenamiento Específicamente realizamos PCA en el conjunto de valores de pixeles RGB en el conjunto de entrenamiento.
++ ###### Data Augmentation
+El método más común para reducir el sobreajuste es agradar los datos artificialmente el conjunto de datos utiliza transformaciones que preservan la etiqueta.
+Empleamos 2 formas distintas de aumento de datos, los cuales permiten que las imágenes transformadas se produzcan a partir de la imagen original con muy poco cálculo, por lo que las imagenes transformadas no necesitan ser almacenadas en el disco. En la implementación las imágenes transformadas se se generan en python en la cpu mientras que el GPU entrena el lote anterior de imagenes.
 
-###### 4.2 Dropout
+  La primera forma de aumento de datos consiste en generar traducciones de imágenes y reflejos horizontales hacemos esto extrayendo 224x224 parches ( y sus reflejos horizontales) y la capacitación de nuestra red en estos parches extraidos esto incrementa el tamaño de nuestro conjunto de entrenamiento establecido en un factor de 2048 .
+Sin este esquema nuestra red sufre sobreajuste sustancia que tendría que obligarnos tener redes mucho más pequeña.
+
+  La segunda forma de aumento de datos consiste en alterar las **intensidades de canales RGB** en imagenes de entrenamiento Específicamente realizamos PCA en el conjunto de valores de pixeles RGB en el conjunto de entrenamiento.
+
++ ###### Dropout
 La combinación de las predicciones de muchos modelos diferentes es una forma exitosa de reducir los errores de la prueba pero parece ser demasiado costoso para las redes neuronales grandes  que llevan varios días de entrenamiento.Sin embargo existe una version muy eficiente de combinación de modelos.
 La técnica consiste en configurar a 0 la salida de cada neurona oculta con probabilidad 0.5. Las neuronas son dropout(abandonadas) de manera que no contribuyen al pase hacia adelante y no participan en la propagacion.
 Asi cada vez que se presenta una entrada la red neuronal toma una arquitectura diferente pero todas estas arquitecturas comparten estas técnica reduce las adaptaciones complejas de las neuronas.
 
-Ya que cada neurona no puede confirmar en la presencia de otras neuronas se fuerza aprender caracteristicas más robustas que son utiles en la conjunción de muchos subconjuntos aleatorios diferentes de las otras neuronas.usamos dropoutup en las 2 primeras capas.
+  Ya que cada neurona no puede confirmar en la presencia de otras neuronas se fuerza aprender caracteristicas más robustas que son utiles en la conjunción de muchos subconjuntos aleatorios diferentes de las otras neuronas.usamos dropoutup en las 2 primeras capas.
 
-### 5. Detail of learning
+#### Detail of learning
 Entrenamos nuestros modelos con una gradiente de descenso estocástio con un tamaño de lote de 128 ejemplos mometum 0,9 y decaimiento de peso 0.0005
 inicializamos los pesos de cada capa con una distribución gaussianda de media cero con una desviacion estandar de 0.01 inicializamos el sesgo de las neuronas en la capa 2 4 5 capas convolucionales con las constante
 esta inicialización acelera las primeras etapas de aprendizaje al proporcionar el ReLU  inicializamos las neuronas sesgos con las capas restantes a 0.
 
-### 6. Discusiones
+#### Discusiones
 Nuestro resultados muestra  es capaz de logra buenos resultados en un conjunto de datos altamente desafiante si se elimina una sola capa 	los resultados no serán adecuados.
-
-
-
 
 #### 2. Mahendran, A. & Vedaldi, A.   Understanding Deep Image Representations by Inverting them.
 
@@ -132,7 +116,7 @@ que reconstruye la imagen desde el código.
 Aqui se describe un enfoque para predecir el estilo de las imágenes y se realizo una evaluación exhaustiva de las diferentes características de la imagen para estas tareas. Se encontro que las características aprendidas en una red multicapa generalmente tienen un mejor rendimiento. Se uso un conjunto de datos existente de calificaciones estéticas y anotaciones de estilo fotográfico. Se presento dos conjuntos de datos novedosos: fotografías de 80K de Flickr anotadas con 20 etiquetas de estilos definidos y 85K pinturas anotadas con 25 etiquetas de estilo o género. Tambien se utiliza los clasificadores aprendidos para extender la búsqueda de imágenes tradicional basada en etiquetas para tener en cuenta las restricciones estilísticas y demostrar la comprensión del estilo de los conjuntos en diferentes datos.
 
 ### Introducción
-Las imágenes creadas deliberadamente transmiten significado, y el estilo visual a menudo es un componente significativo del significado de la imagen. 
+Las imágenes creadas deliberadamente transmiten significado, y el estilo visual a menudo es un componente significativo del significado de la imagen.
 
 Aunque es muy reconocible para los observadores humanos, el estilo visual es un concepto difícil de definir rigurosamente. Ha habido algunas investigaciones previas en el estilo de la imagen, pero esto se ha limitado principalmente al reconocimiento de algunas propiedades ópticas bien definidas, como la profundidad de campo. Definimos varios tipos diferentes de estilos de imagen y recopilamos un nuevo conjunto de datos a gran escala con fotografías anotadas con etiquetas de estilo. Este conjunto de datos incorpora varios aspectos diferentes del estilo visual, incluidas las técnicas fotográficas ("Macro", "HDR") y los estilos de composición ("Mínimo", "Geométrico"), estados de ánimo ("Sereno", "Melancolía"), géneros ("Vintage", "Romantico", "Horror") y tipos de escenas ("Misty", "Sunny")). Estos estilos no son mutuamente excluyentes y representan diferentes atributos de estilo. También reunimos un gran conjunto de imágenes visuales (en su mayoría pinturas) anotadas con etiquetas de arte de estilo histórico, que van desde el Renacimiento hasta el arte moderno.
 
@@ -339,4 +323,3 @@ Uso de la Tarjeta gráfica
 - Reemplazar la operación max-pooling por agrupación promedio mejora el flujo de gradiente y se obtiene resultados ligeramente más atractivos.
 - Las representaciones de contenido y estilo en la Red Neural Convolucional son separables.
 - Las imágenes visualmente más atractivas suelen ser creadas en las capas más altas de la red.
-
