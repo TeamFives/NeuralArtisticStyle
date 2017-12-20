@@ -48,17 +48,17 @@ Es una normalización de brillo  reduce la tasa de error top1 en un 1. y top en 
 CNN logro una tasa de erroe de 13% sin normalizacion y 11% con normalización.
 
 + ##### Overlapping Pooling
-Las capas agrupadas en CNN resumen de la salida de los grupos vecinos de neuronas en mismo kernel del mapa. Tradicionalmente los vecinos por unidades adyacente de agrupaciones no se superponen.
+Las capas agrupadas en CNN resumen la salida de los grupos vecinos de neuronas en mismo kernel del mapa. Tradicionalmente los vecinos por unidades adyacente de agrupaciones no se superponen.
 Para ser más precisos, se puede pensar que una capa de agrupamiento consiste en una grilla de agrupamiento unidades separadas por pixeles de separación.
 Generalmente observamos durante el entrenamiento que los modelos con superposición son un mas difícil de sobre equilibrar.
 
 
 + ##### Overall Architecture
 
- + Red tiene 8 capas con peso.
- + 3 capas completamente conectadas.
- + La salida de la ´ultima capa esta conectada a un softmax sobre 100 bias que produce una distrución sobre 1000 etiquetas de clases.
- + La 5ta capa ReLu la no linealidad se aplicada a salida de cada capa convolucional.
+   + Red tiene 8 capas con peso.
+   + 3 capas completamente conectadas.
+   + La salida de la ´ultima capa esta conectada a un softmax sobre 100 bias que produce una distrución sobre 1000 etiquetas de clases.
+   + La 5ta capa ReLu la no linealidad se aplicada a salida de cada capa convolucional.
 
 
 
