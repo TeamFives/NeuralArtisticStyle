@@ -115,19 +115,51 @@ Para ello se preguntan cual es la medida posible para reconstruir la imagen en s
 
 Se busca hacer un análisis directo de la representación haciendo una caracterización de la información de la imágen.
 
-![Sin titulo](imag/invertRepFunction.png)
+![invertFunction](imag/invertRepFunction.png)
 
-que reconstruye la imagen desde el codigo de $\phi(x)$.
+que reconstruye la imagen desde el código.
 
 * Se usará los metodos SIFT, HOG y  CNN, usando solo la informacion que se obtiene de la representación de la imagen.
-* Luego aplicacrán su propio metodo para comprobar que obtienen mejores resultados que HOG.
+* Luego aplicarán su propio metodo para comprobar que obtienen mejores resultados que HOG.
 * Aplicarán la tecnica de inversión al análisis del CNN, donde exploran la invarianza de la muestra al obtener  reconstrucciones aproximadas.
 * Estudiaran la localidad de la información almacenada en la representación mediante la reconstrucción de las imágenes seleccionadas en grupos de neuronas sea por espacio o canal.
 
-##### Representación Inversa
 
-funcion de perdida + funcion reguladora
+#### 3. Karayev, S. et al. Recognizing image style. arXiv preprint arXiv:1311.3715 (2013)
 
+### 1.1 Resumen
+
+Aqui se describe un enfoque para predecir el estilo de las imágenes y se realizo una evaluación exhaustiva de las diferentes características de la imagen para estas tareas. Se encontro que las características aprendidas en una red multicapa generalmente tienen un mejor rendimiento. Se uso un conjunto de datos existente de calificaciones estéticas y anotaciones de estilo fotográfico. Se presento dos conjuntos de datos novedosos: fotografías de 80K de Flickr anotadas con 20 etiquetas de estilos definidos y 85K pinturas anotadas con 25 etiquetas de estilo o género. Tambien se utiliza los clasificadores aprendidos para extender la búsqueda de imágenes tradicional basada en etiquetas para tener en cuenta las restricciones estilísticas y demostrar la comprensión del estilo de los conjuntos en diferentes datos.
+
+### Introducción
+Las imágenes creadas deliberadamente transmiten significado, y el estilo visual a menudo es un componente significativo del significado de la imagen. 
+
+Aunque es muy reconocible para los observadores humanos, el estilo visual es un concepto difícil de definir rigurosamente. Ha habido algunas investigaciones previas en el estilo de la imagen, pero esto se ha limitado principalmente al reconocimiento de algunas propiedades ópticas bien definidas, como la profundidad de campo. Definimos varios tipos diferentes de estilos de imagen y recopilamos un nuevo conjunto de datos a gran escala con fotografías anotadas con etiquetas de estilo. Este conjunto de datos incorpora varios aspectos diferentes del estilo visual, incluidas las técnicas fotográficas ("Macro", "HDR") y los estilos de composición ("Mínimo", "Geométrico"), estados de ánimo ("Sereno", "Melancolía"), géneros ("Vintage", "Romantico", "Horror") y tipos de escenas ("Misty", "Sunny")). Estos estilos no son mutuamente excluyentes y representan diferentes atributos de estilo. También reunimos un gran conjunto de imágenes visuales (en su mayoría pinturas) anotadas con etiquetas de arte de estilo histórico, que van desde el Renacimiento hasta el arte moderno.
+
+Se descubre que las características de la red neuronal convolucional profunda (CNN) funcionan mejor para la tarea. Esto es sorprendente por varias razones: estas características fueron entrenadas en categorías de clases de objetos (ImageNet), y muchos estilos parecen ser principalmente sobre opciones de color, sin embargo, CNN presenta funciones de histograma de color pulsante. Esto lleva a una conclusión de nuestro trabajo: las características de nivel medio derivadas de los conjuntos de datos de objetos son genéricas para el reconocimiento de estilo y superiores a las funciones ajustadas a mano.
+
+
+### Aplicaciones y código
+
+Se ve primero un ejemplo de uso del método para buscar imágenes por estilo. En la misma línea, los resultados de búsqueda de similitud visual podrían filtrarse por estilo visual, posibilitando consultas como mas similar a esta imagen. En segundo lugar, las etiquetas de estilo pueden proporcionar valiosas características de nivel medio para otras tareas de comprensión de imágenes. Por ejemplo, cada vez se realizan más esfuerzos para comprender el significado de la imagen, la estética, el interés, la popularidad y la emoción, y el estilo es una parte importante del significado. Finalmente, los predictores aprendidos podrían ser un componente útil para modificar el estilo de una imagen.
+
+### Trabajo relacionado
+
+La mayoría de las investigaciones en visión artificial abordan el reconocimiento y la reconstrucción, independientemente del estilo de la imagen. Algunas obras anteriores se han centrado directamente en la composición de imágenes, particularmente en los atributos de alto nivel de belleza, interés y memorabilidad. Más comúnmente, varios autores anteriores han descrito métodos para predecir la calidad estética de las fotografías. Datta, diseñó las características visuales para representar conceptos tales como el colorido, la saturación, la regla de los tercios y la profundidad de campo, y evaluó las predicciones de calificación estética en fotografías.
+
+En uno de los trabajos se introdujo el conjunto de datos de Análisis visual estético (AVA), anotado con calificaciones de los usuarios de DPChallenge, un sitio web de competencia de habilidades fotográficas. El conjunto de datos de AVA contiene algunas etiquetas de estilo fotográfico, derivadas de los títulos y las descripciones de los desafíos fotográficos a los que se enviaron las fotografías. Los atributos que encontraron para ser informativos (por ejemplo, "foto hermosa", "buen detalle") no son específicos del estilo de la imagen.
+
+### Fuentes de datos
+
+Se quiere estudiar una gama más amplia de estilos, incluidos diferentes tipos de estilos que van desde géneros, estilos de composición y estados de ánimo. Además, se necesitan grandes conjuntos de datos para obtener resultados efectivos, por lo que nos gustaría obtener datos de comunidades en línea, como Flickr.
+
+Estilo Flickr. Aunque los usuarios de Flickr suelen proporcionar etiquetas de forma libre para sus imágenes cargadas, las etiquetas tienden a ser bastante poco fiables. En cambio, recurrimos a los grupos de Flickr, que son colecciones de conceptos visuales comisariadas por la comunidad. Contiene más de 167K de imágenes en el momento de la escritura; el grupo "Film Noir Mood" se describe como "No solo fotografía en blanco y negro, sino también oscura, arenosa, cambiante ..." y comprende más de 7,000 imágenes.
+
+Wikipaintings. También proporcionamos un nuevo conjunto de datos para clasificar el estilo de pintura. Recopilamos un conjunto de datos de 100.000 imágenes de alto arte, en su mayoría pinturas, etiquetadas con el artista, estilo, género, fecha e información de etiqueta libremente por una comunidad de expertos en el sitio web Wikipaintings.org. Nuestro conjunto de datos presenta una diversidad estilística importante, que abarca principalmente los estilos del Renacimiento a los movimientos del arte moderno (la Figura 6 proporciona más desgloses). Seleccionamos 25 estilos con más de 1,000 ejemplos, para un total de 85,000 imágenes.
+
+### Algoritmo de aprendizaje
+
+Debido a que los conjuntos de datos que manejamos son bastante grandes y algunas de las características son de gran dimensión, consideramos solo clasificadores lineales, confiando en funciones sofisticadas para proporcionar robustez. Usamos una implementación de código abierto de Stochastic Gradual Descent con subgradiente adaptativo. El proceso de aprendizaje optimiza la función dada en el paper.
 
 ## Métodos
 Los resultados de los investigadores Leon A. Gatys, Alexander S. Ecker,  Matthias Bethge fueron realizados en base al uso de una red VGG network, la cual es una convolutional neural network que ha sido entrenada con aproximandamente 1.2 millones de imagenes del dataset [ImageNet](http://image-net.org/index) por el Visual Geometry Group de la Universidad de Oxford.
@@ -228,42 +260,12 @@ Hay varias herramientas que se pueden emplear ya que nos facilitan la implementa
 
 - [TensorFlow](https://github.com/TeamFives/NeuralArtisticStyle/blob/master/Cuaderno/NeuralArtisticStyle.ipynb)
 
-#### 3. Karayev, S. et al. Recognizing image style. arXiv preprint arXiv:1311.3715 (2013)
 
-### 1.1 Resumen
+##Caracteristicas del Servidor
 
-Aqui se describe un enfoque para predecir el estilo de las imágenes y se realizo una evaluación exhaustiva de las diferentes características de la imagen para estas tareas. Se encontro que las características aprendidas en una red multicapa generalmente tienen un mejor rendimiento. Se uso un conjunto de datos existente de calificaciones estéticas y anotaciones de estilo fotográfico. Se presento dos conjuntos de datos novedosos: fotografías de 80K de Flickr anotadas con 20 etiquetas de estilos definidos y 85K pinturas anotadas con 25 etiquetas de estilo o género. Tambien se utiliza los clasificadores aprendidos para extender la búsqueda de imágenes tradicional basada en etiquetas para tener en cuenta las restricciones estilísticas y demostrar la comprensión del estilo de los conjuntos en diferentes datos.
+![invertFunction](imag/gridk2.png)
 
-### Introducción
-Las imágenes creadas deliberadamente transmiten significado, y el estilo visual a menudo es un componente significativo del significado de la imagen. 
-
-Aunque es muy reconocible para los observadores humanos, el estilo visual es un concepto difícil de definir rigurosamente. Ha habido algunas investigaciones previas en el estilo de la imagen, pero esto se ha limitado principalmente al reconocimiento de algunas propiedades ópticas bien definidas, como la profundidad de campo. Definimos varios tipos diferentes de estilos de imagen y recopilamos un nuevo conjunto de datos a gran escala con fotografías anotadas con etiquetas de estilo. Este conjunto de datos incorpora varios aspectos diferentes del estilo visual, incluidas las técnicas fotográficas ("Macro", "HDR") y los estilos de composición ("Mínimo", "Geométrico"), estados de ánimo ("Sereno", "Melancolía"), géneros ("Vintage", "Romantico", "Horror") y tipos de escenas ("Misty", "Sunny")). Estos estilos no son mutuamente excluyentes y representan diferentes atributos de estilo. También reunimos un gran conjunto de imágenes visuales (en su mayoría pinturas) anotadas con etiquetas de arte de estilo histórico, que van desde el Renacimiento hasta el arte moderno.
-
-Se descubre que las características de la red neuronal convolucional profunda (CNN) funcionan mejor para la tarea. Esto es sorprendente por varias razones: estas características fueron entrenadas en categorías de clases de objetos (ImageNet), y muchos estilos parecen ser principalmente sobre opciones de color, sin embargo, CNN presenta funciones de histograma de color pulsante. Esto lleva a una conclusión de nuestro trabajo: las características de nivel medio derivadas de los conjuntos de datos de objetos son genéricas para el reconocimiento de estilo y superiores a las funciones ajustadas a mano.
-
-
-### Aplicaciones y código
-
-Se ve primero un ejemplo de uso del método para buscar imágenes por estilo. En la misma línea, los resultados de búsqueda de similitud visual podrían filtrarse por estilo visual, posibilitando consultas como mas similar a esta imagen. En segundo lugar, las etiquetas de estilo pueden proporcionar valiosas características de nivel medio para otras tareas de comprensión de imágenes. Por ejemplo, cada vez se realizan más esfuerzos para comprender el significado de la imagen, la estética, el interés, la popularidad y la emoción, y el estilo es una parte importante del significado. Finalmente, los predictores aprendidos podrían ser un componente útil para modificar el estilo de una imagen.
-
-### Trabajo relacionado
-
-La mayoría de las investigaciones en visión artificial abordan el reconocimiento y la reconstrucción, independientemente del estilo de la imagen. Algunas obras anteriores se han centrado directamente en la composición de imágenes, particularmente en los atributos de alto nivel de belleza, interés y memorabilidad. Más comúnmente, varios autores anteriores han descrito métodos para predecir la calidad estética de las fotografías. Datta, diseñó las características visuales para representar conceptos tales como el colorido, la saturación, la regla de los tercios y la profundidad de campo, y evaluó las predicciones de calificación estética en fotografías.
-
-En uno de los trabajos se introdujo el conjunto de datos de Análisis visual estético (AVA), anotado con calificaciones de los usuarios de DPChallenge, un sitio web de competencia de habilidades fotográficas. El conjunto de datos de AVA contiene algunas etiquetas de estilo fotográfico, derivadas de los títulos y las descripciones de los desafíos fotográficos a los que se enviaron las fotografías. Los atributos que encontraron para ser informativos (por ejemplo, "foto hermosa", "buen detalle") no son específicos del estilo de la imagen.
-
-### Fuentes de datos
-
-Se quiere estudiar una gama más amplia de estilos, incluidos diferentes tipos de estilos que van desde géneros, estilos de composición y estados de ánimo. Además, se necesitan grandes conjuntos de datos para obtener resultados efectivos, por lo que nos gustaría obtener datos de comunidades en línea, como Flickr.
-
-Estilo Flickr. Aunque los usuarios de Flickr suelen proporcionar etiquetas de forma libre para sus imágenes cargadas, las etiquetas tienden a ser bastante poco fiables. En cambio, recurrimos a los grupos de Flickr, que son colecciones de conceptos visuales comisariadas por la comunidad. Contiene más de 167K de imágenes en el momento de la escritura; el grupo "Film Noir Mood" se describe como "No solo fotografía en blanco y negro, sino también oscura, arenosa, cambiante ..." y comprende más de 7,000 imágenes.
-
-Wikipaintings. También proporcionamos un nuevo conjunto de datos para clasificar el estilo de pintura. Recopilamos un conjunto de datos de 100.000 imágenes de alto arte, en su mayoría pinturas, etiquetadas con el artista, estilo, género, fecha e información de etiqueta libremente por una comunidad de expertos en el sitio web Wikipaintings.org. Nuestro conjunto de datos presenta una diversidad estilística importante, que abarca principalmente los estilos del Renacimiento a los movimientos del arte moderno (la Figura 6 proporciona más desgloses). Seleccionamos 25 estilos con más de 1,000 ejemplos, para un total de 85,000 imágenes.
-
-### Algoritmo de aprendizaje
-
-Debido a que los conjuntos de datos que manejamos son bastante grandes y algunas de las características son de gran dimensión, consideramos solo clasificadores lineales, confiando en funciones sofisticadas para proporcionar robustez. Usamos una implementación de código abierto de Stochastic Gradual Descent con subgradiente adaptativo. El proceso de aprendizaje optimiza la función dada en el paper.
-
+![invertFunction](imag/caractServidor.png)
 ##Resultados
 
 ##Primera
