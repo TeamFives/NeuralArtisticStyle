@@ -266,14 +266,71 @@ Debido a que los conjuntos de datos que manejamos son bastante grandes y algunas
 
 ##Resultados
 
-**Imagen que da el estilo**
+##Primera
+
+###Imagen que da el estilo
+
 ![Estilo](imag/Crash.jpg)
 
-**Imagen con continido**
+###Imagen con contenido
+
 ![Contenido](imag/book_cover.jpg)
 
-**Imagen de resultado**
+###Proceso Iteración 1999
+
+![Proceso1999](imag/temp_output_1999.jpg)
+
+###Proceso Iteración 3999
+
+![Proceso3999](imag/temp_output_3999.jpg)
+
+###Proceso Iteración 5999
+
+![Proceso5999](imag/temp_output_5999.jpg)
+
+###Proceso Iteración 7999
+
+![Proceso7999](imag/temp_output_7999.jpg)
+
+###Imagen de resultado
+
 ![Resultado](imag/final_output.jpg)
+
+
+
+##Segundo
+
+###Imagen que da el estilo
+
+![Estilo](imag/leflor.jpg)
+
+###Imagen con contenido
+
+![Contenido](imag/leon-blanco.png)
+
+###Proceso Iteración 4999
+
+![Proceso4999](imag/temp_output_4999.jpg)
+
+###Proceso Iteración 10999
+
+![Proceso10999](imag/temp_output_10999.jpg)
+
+###Proceso Iteración 16999
+
+![Proceso16999](imag/temp_output_16999.jpg)
+
+###Proceso Iteración 22999
+
+![Proceso22999](imag/temp_output_22999.jpg)
+
+###Proceso Iteración 28999
+
+![Proceso28999](imag/temp_output_28999.jpg)
+
+###Imagen de resultado
+
+![Resultado](imag/final_output2.jpg)
 
 ## Conclusiones
 - Reemplazar la operación max-pooling por agrupación promedio mejora el flujo de gradiente y se obtiene resultados ligeramente más atractivos.
