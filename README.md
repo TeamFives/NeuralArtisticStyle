@@ -246,78 +246,78 @@ Hay varias herramientas que se pueden emplear ya que nos facilitan la implementa
 
 
 ## Características del Servidor
-Especificaciones de tarjeta gráfica NVIDIA GRiD K2
+### Especificaciones de tarjeta gráfica NVIDIA GRiD K2
 ![grid](imag/gridk2.png)
 
-Uso de la Tarjeta gráfica
-![servidor](imag/caractServidor.png)
+### Uso de la Tarjeta gráfica
+![servidor](imag/caractServer.png)
 
 
-##Resultados
+## Resultados
 
-##Primera
+## Primera
 
-###Imagen que da el estilo
+### Imagen que da el estilo
 
 ![Estilo](imag/Crash.jpg)
 
-###Imagen con contenido
+### Imagen con contenido
 
 ![Contenido](imag/book_cover.jpg)
 
-###Proceso Iteración 1999
+### Proceso Iteración 1999
 
 ![Proceso1999](imag/temp_output_1999.jpg)
 
-###Proceso Iteración 3999
+### Proceso Iteración 3999
 
 ![Proceso3999](imag/temp_output_3999.jpg)
 
-###Proceso Iteración 5999
+### Proceso Iteración 5999
 
 ![Proceso5999](imag/temp_output_5999.jpg)
 
-###Proceso Iteración 7999
+### Proceso Iteración 7999
 
 ![Proceso7999](imag/temp_output_7999.jpg)
 
-###Imagen de resultado
+### Imagen de resultado
 
 ![Resultado](imag/final_output.jpg)
 
 
 
-##Segundo
+## Segundo
 
-###Imagen que da el estilo
+### Imagen que da el estilo
 
 ![Estilo](imag/leflor.jpg)
 
-###Imagen con contenido
+### Imagen con contenido
 
 ![Contenido](imag/leon-blanco.png)
 
-###Proceso Iteración 4999
+### Proceso Iteración 4999
 
 ![Proceso4999](imag/temp_output_4999.jpg)
 
-###Proceso Iteración 10999
+### Proceso Iteración 10999
 
 ![Proceso10999](imag/temp_output_10999.jpg)
 
-###Proceso Iteración 16999
+### Proceso Iteración 16999
 
 ![Proceso16999](imag/temp_output_16999.jpg)
 
-###Proceso Iteración 22999
+### Proceso Iteración 22999
 
 ![Proceso22999](imag/temp_output_22999.jpg)
 
-###Proceso Iteración 28999
+### Proceso Iteración 28999
 
 ![Proceso28999](imag/temp_output_28999.jpg)
 
-###Imagen de resultado
+### Imagen de resultado
 
 ![Resultado](imag/final_output2.jpg)
 
