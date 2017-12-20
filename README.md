@@ -262,11 +262,11 @@ Hay varias herramientas que se pueden emplear ya que nos facilitan la implementa
 
 
 ## Características del Servidor
-Características de tarjeta gráfica NVIDIA GRiD K2
-![invertFunction](imag/gridk2.png)
+Especificaciones de tarjeta gráfica NVIDIA GRiD K2
+![](imag/gridk2.png)
 
 Uso de la Tarjeta gráfica
-![invertFunction](imag/caractServidor.png)
+![](imag/caractServidor.png)
 ##Resultados
 
 ##Primera
