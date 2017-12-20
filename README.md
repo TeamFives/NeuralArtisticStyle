@@ -66,10 +66,10 @@ Generalmente observamos durante el entrenamiento que los modelos con superposici
 Nuestra arquitectura tiene 60 millones de parámetros aunque las 1000 clases de ILSVRC haga que cara ejemplo imponga 10bits de restricción en la asignación de la imagen a etiquetar, esto resulta ser insuficiente para aprender tantos parámetros sin un  sobreajuste considerable.Formas de cambatir el sobreajuste.
 
 + ###### Data Augmentation
-El método más común para reducir el sobreajuste es agradar los datos de artificialmente el conjunto de datos utiliza transformaciones que preservan la etiqueta.
-Empleamos 2 formas distintas de aumento de datos, los cuales permiten que las imágenes transformadas se produzcan a partir de la imagen original con muy poco cálculo, por lo que las imagenes transformadas no necesita almacenar en el disco. En la implementación las imágenes transformadas se se generan en python en la cpu mientras que el GPU entrena el lote anterior de imagenes.
+El método más común para reducir el sobreajuste es agradar los datos artificialmente el conjunto de datos utiliza transformaciones que preservan la etiqueta.
+Empleamos 2 formas distintas de aumento de datos, los cuales permiten que las imágenes transformadas se produzcan a partir de la imagen original con muy poco cálculo, por lo que las imagenes transformadas no necesitan ser almacenadas en el disco. En la implementación las imágenes transformadas se se generan en python en la cpu mientras que el GPU entrena el lote anterior de imagenes.
 
-  La primera forma de aumento de datos consiste en generar traducciones de imágenes y reflejos horizontales hacemos esto extrayendo 224x224 parches ( y sus reflejos horizontales) y la capacitación de nuestra red en estos parches extraidos esto incrementa el tamaño de nuestro conjunto de entrenamiento establecido en un factor de 2048 aunque, los ejemplos de entrenamiento resultante son por supuesto altamente interdependientes.
+  La primera forma de aumento de datos consiste en generar traducciones de imágenes y reflejos horizontales hacemos esto extrayendo 224x224 parches ( y sus reflejos horizontales) y la capacitación de nuestra red en estos parches extraidos esto incrementa el tamaño de nuestro conjunto de entrenamiento establecido en un factor de 2048 .
 Sin este esquema nuestra red sufre sobreajuste sustancia que tendría que obligarnos tener redes mucho más pequeña.
 
   La segunda forma de aumento de datos consiste en alterar las **intensidades de canales RGB** en imagenes de entrenamiento Específicamente realizamos PCA en el conjunto de valores de pixeles RGB en el conjunto de entrenamiento.
