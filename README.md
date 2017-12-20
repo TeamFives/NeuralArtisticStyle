@@ -113,16 +113,9 @@ Este paper análiza la información del contenido visual  de la representación.
 Para ello se preguntan cual es la medida posible para reconstruir la imagen en si, en cual trabajan con métodos para invertir las representaciones usando HOG y CNN.
 
 
-Se busca hacer un analisis directo de la representación haciendo una caracterización de la información de la imágen.
+Se busca hacer un análisis directo de la representación haciendo una caracterización de la información de la imágen.
 
-$$
-\phi(x) \text{Función de representación de la imagen}
-$$
-
-y su inversíon
-$
-\phi^{-1}
-$
+![Sin titulo](imag/invertRepFunction.png)
 
 que reconstruye la imagen desde el codigo de $\phi(x)$.
 
